@@ -1,7 +1,5 @@
 
 class Node:
-
-
     def __init__(self, parent=None, position=None):
 
         self.parent = parent
@@ -9,6 +7,7 @@ class Node:
 
         self.g = 0
         self.h = 0
+        # A* heuristics
         self.f = 0
 
     def __eq__(self,other):
@@ -16,14 +15,13 @@ class Node:
 
 
 class Astar():
-
     def __init__(self):
         self.visited = []
 
-
-    def search(self,maze,cost,start,end):
+    def search(self, maze, cost, start, end):
         start_node = Node(None, tuple(start))
         start_node.g = start_node.h = start_node.f = 0
+        
         end_node = Node(None, tuple(end))
         end_node.g = end_node.h = end_node.f = 0
 
@@ -35,10 +33,11 @@ class Astar():
         outer_iterations = 0
         max_iterations = (len(maze) // 2) ** 10
 
-        move  =  [[-1, 0 ], # go up
-                 [ 0, -1], # go left
-                 [ 1, 0 ], # go down
-                 [ 0, 1 ]] # go right
+        move  = [[-1, 0 ], # go up
+                [ 0, -1], # go left
+                [ 1, 0 ], # go down
+                [ 0, 1 ]] # go right
+
         no_rows = len(maze)
         no_columns = len(maze[0])
 
@@ -53,7 +52,7 @@ class Astar():
                     current_index = index
 
             if outer_iterations > max_iterations:
-                print ("giving up on pathfinding too many iterations")
+                print ("Giving up on pathfinding. Too many iterations!")
                 return self.return_path(self.visited,current_node,maze)
             
             yet_to_visit_list.pop(current_index)
