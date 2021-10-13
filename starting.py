@@ -82,21 +82,21 @@ class Game(Astar, Bfs):
         draw_grid = False
         self.screen.fill(self.black)
         while not game_exit:
-            # self.button("Start Node='s'",
-            #             1025,
-            #             50,
-            #             190,
-            #             50,
-            #             self.red, (0, 0, 50),
-            #             action=None)
+            self.button("Start Node: Key S",
+                        1025,
+                        50,
+                        190,
+                        50,
+                        self.red, (0, 0, 50),
+                        action=None)
 
-            # self.button("end Node='e'",
-            #             1025,
-            #             125,
-            #             190,
-            #             50,
-            #             self.red, (0, 0, 50),
-            #             action=None)
+            self.button("End Node: Key E",
+                        1025,
+                        125,
+                        190,
+                        50,
+                        self.red, (0, 0, 50),
+                        action=None)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -136,7 +136,7 @@ class Game(Astar, Bfs):
             for x in self.walls:
                 self.maze[x[0]][x[1]] = 1
 
-            self.button("Astar",
+            self.button("A*",
                         1025,
                         250,
                         190,
@@ -178,7 +178,7 @@ class Game(Astar, Bfs):
         draw = []
         for i, j in enumerate(path):
             for k, l in enumerate(j):
-                if l is not -1:
+                if l!= -1:
                     draw.append((i, k))
 
         for i in draw[::-1]:
@@ -196,7 +196,7 @@ class Game(Astar, Bfs):
         draw = []
         for i, j in enumerate(path):
             for k, l in enumerate(j):
-                if l is not -1:
+                if l != -1:
                     draw.append((i, k))
 
         for i in draw[::-1]:
